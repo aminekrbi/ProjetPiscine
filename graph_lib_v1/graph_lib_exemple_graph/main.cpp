@@ -51,6 +51,8 @@ int main()
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         g.update();
         grman::mettre_a_jour();
+
+            ///suivant précédent
             if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<60 && mouse_y>0))
             {
                 choixgraph--;
@@ -61,23 +63,30 @@ int main()
                    choixgraph++;
                    choixgraph=affichagegraph(g,choixgraph);
             }
+
+            ///quitter
             if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<800 && mouse_y>725))
             {
                     return 0;
                     //textprintf(grman::page,font, 100, 100, makecol(0,0,0), "bien joue" );
             }
+
+            ///sauvegarder
             if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<725 && mouse_y>680))
             {
 
             }
+
+            ///simulation
             if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<100 && mouse_y>15))
             {
-
+                simulation()
             }
             if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<100 && mouse_y>15))
             {
 
             }
+
         /// Mise à jour générale (clavier/souris/buffer etc...)
         //grman::mettre_a_jour();
     }
