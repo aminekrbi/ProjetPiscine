@@ -266,6 +266,8 @@ class GraphInterface
         grman::WidgetBox precedent;
         grman::WidgetBox lancersimu;
         grman::WidgetBox stopsimu;
+        grman::WidgetBox sauvegarder;
+        grman::WidgetBox supp;
 
         // A compléter éventuellement par des widgets de décoration ou
         // d'édition (boutons ajouter/enlever ...)
