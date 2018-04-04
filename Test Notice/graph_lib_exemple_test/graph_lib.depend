@@ -1,7 +1,0 @@
-# depslib dependency file v1.0
-1522575069 source:c:\users\amine k\desktop\test notice\graph_lib_exemple_test\grman\coords.cpp
-	"coords.h"
-
-1522575424 c:\users\amine k\desktop\test notice\graph_lib_exemple_test\grman\coords.h
-	<cmath>
-

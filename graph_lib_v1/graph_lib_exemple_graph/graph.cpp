@@ -136,18 +136,55 @@ void Edge::post_update()
 /// éléments qui seront ensuite ajoutés lors de la mise ne place du Graphe
 GraphInterface::GraphInterface(int x, int y, int w, int h)
 {
-    m_top_box.set_dim(1000,740);
+    //m_top_box.set_dim(1000,740);
     m_top_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
 
-    m_top_box.add_child(m_tool_box);
-    m_tool_box.set_dim(80,720);
-    m_tool_box.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
-    m_tool_box.set_bg_color(BLANCBLEU);
-
+    ///fonds
     m_top_box.add_child(m_main_box);
-    m_main_box.set_dim(908,720);
+    m_main_box.set_dim(SCREEN_W+15,800);
     m_main_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
     m_main_box.set_bg_color(BLANCJAUNE);
+
+    /// boite latérale
+    m_main_box.add_child(m_tool_box);
+    m_tool_box.set_dim(80,700);
+    m_tool_box.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
+    m_tool_box.set_bg_color(BLEUCLAIR);
+
+    ///suivant précedent
+    m_main_box.add_child(suivant);
+    suivant.set_dim(80,120);
+    suivant.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
+    suivant.set_bg_color(VERT);
+
+
+    m_main_box.add_child(precedent);
+    precedent.set_dim(80,60);
+    precedent.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
+    precedent.set_bg_color(BLEU);
+
+    ///supp sauvegarder
+    m_main_box.add_child(supp);
+    supp.set_dim(80,120);
+    supp.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Down);
+    supp.set_bg_color(ROUGE);
+
+    m_main_box.add_child(sauvegarder);
+    sauvegarder.set_dim(80,75);
+    sauvegarder.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Down);
+    sauvegarder.set_bg_color(VERT);
+
+    ///simulation stop debut
+    m_main_box.add_child(stopsimu);
+    stopsimu.set_dim(100,100);
+    stopsimu.set_pos(300,650);
+    stopsimu.set_bg_color(VIOLET);
+
+    m_main_box.add_child(lancersimu);
+    lancersimu.set_dim(100,100);
+    lancersimu.set_pos(700,650);
+    lancersimu.set_bg_color(VIOLET);
+
 }
 
 
@@ -164,14 +201,14 @@ void Graph::make_example()
 
     /// Les sommets doivent être définis avant les arcs
     // Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
-    add_interfaced_vertex(0, 30.0, 200, 100, "clown1.jpg");
-    add_interfaced_vertex(1, 60.0, 400, 100, "clown2.jpg");
-    add_interfaced_vertex(2,  50.0, 200, 300, "clown3.jpg");
-    add_interfaced_vertex(3,  0.0, 400, 300, "clown4.jpg");
-    add_interfaced_vertex(4,  100.0, 600, 300, "clown5.jpg");
-    add_interfaced_vertex(5,  0.0, 100, 500, "bad_clowns_xx3xx.jpg", 0);
-    add_interfaced_vertex(6,  0.0, 300, 500, "bad_clowns_xx3xx.jpg", 1);
-    add_interfaced_vertex(7,  0.0, 500, 500, "bad_clowns_xx3xx.jpg", 2);
+    add_interfaced_vertex(0, 30.0, 400, 100, "bateau.bmp");
+    add_interfaced_vertex(1, 60.0, 600, 100, "loutredemer.bmp");
+    add_interfaced_vertex(2,  50.0, 400, 300, "orque.bmp");
+    add_interfaced_vertex(3,  0.0, 600, 300, "phoques.bmp");
+    add_interfaced_vertex(4,  100.0, 800, 300, "poissoncarnivore.bmp");
+    add_interfaced_vertex(5,  0.0, 300, 500, "bad_clowns_xx3xx.jpg", 0);
+    add_interfaced_vertex(6,  0.0, 500, 500, "bad_clowns_xx3xx.jpg", 1);
+    add_interfaced_vertex(7,  0.0, 700, 500, "bad_clowns_xx3xx.jpg", 2);
 
     /// Les arcs doivent être définis entre des sommets qui existent !
     // AJouter l'arc d'indice 0, allant du sommet 1 au sommet 2 de poids 50 etc...
