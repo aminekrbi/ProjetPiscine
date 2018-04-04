@@ -5,10 +5,14 @@
 
 int main()
 {
+<<<<<<< HEAD
     bool line1 = false;
     bool line2 = false;
     bool line3 = false;
     bool line4 = false;
+=======
+
+>>>>>>> master
     /// A appeler en 1er avant d'instancier des objets graphiques etc...
     grman::init();
 
@@ -31,6 +35,7 @@ int main()
         rect(grman::page,25,300,50,325,makecol(0,0,0));
         rect(grman::page,25,350,50,375,makecol(0,0,0));
         rect(grman::page,25,400,50,425,makecol(0,0,0));
+<<<<<<< HEAD
 ///Algorithme pour cocher les cases choisis
         if(mouse_b&1 && mouse_x>25 && mouse_x<50 && mouse_y>250 && mouse_y<275 )
         {
@@ -105,6 +110,11 @@ int main()
         {
             line4 = false;
         }
+=======
+
+
+        textprintf(grman::page,font,55,260,makecol(255,255,255),"k-connexité");
+>>>>>>> master
 
 
 

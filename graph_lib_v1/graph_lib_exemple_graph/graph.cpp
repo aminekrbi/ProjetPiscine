@@ -147,11 +147,7 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_top_box.add_child(m_main_box);
     m_main_box.set_dim(908,720);
     m_main_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
-<<<<<<< HEAD
-    m_main_box.set_bg_color(BLEUCLAIR);
-=======
     m_main_box.set_bg_color(BLANCJAUNE);
->>>>>>> master
 }
 
 
@@ -189,10 +185,6 @@ void Graph::make_example()
     add_interfaced_edge(7, 2, 0, 100.0);
     add_interfaced_edge(8, 5, 2, 20.0);
     add_interfaced_edge(9, 3, 7, 80.0);
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 }
 
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
