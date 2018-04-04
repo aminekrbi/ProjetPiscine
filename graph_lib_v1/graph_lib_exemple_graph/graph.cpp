@@ -160,6 +160,7 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     lancersimu.set_pos(600,700);
     lancersimu.set_bg_color(VIOLET);
 
+
     m_top_box.add_child(m_main_box);
     m_main_box.set_dim(SCREEN_W+15,800);
     m_main_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
