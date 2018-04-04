@@ -50,7 +50,7 @@ int main()
     {
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         g.update();
-        //grman::mettre_a_jour();
+        grman::mettre_a_jour();
             if(mouse_b&1 && (mouse_x<100 && mouse_x>15) && (mouse_y<100 && mouse_y>15))
             {
                 choixgraph--;
