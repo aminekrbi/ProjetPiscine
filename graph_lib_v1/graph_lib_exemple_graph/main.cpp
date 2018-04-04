@@ -23,7 +23,8 @@ affichagegraph(Graph g, int choixgraph)
                     return choixgraph;
                 }
         }
-    }
+   }
+   return 0;
 }
 int main()
 {
@@ -40,6 +41,8 @@ int main()
     Graph g;
     g.make_example();
 
+    g.update();
+
 
     /// Vous gardez la main sur la "boucle de jeu"
     /// ( contrairement à des frameworks plus avancés )
@@ -47,6 +50,7 @@ int main()
     {
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         g.update();
+        //grman::mettre_a_jour();
             if(mouse_b&1 && (mouse_x<100 && mouse_x>15) && (mouse_y<100 && mouse_y>15))
             {
                 choixgraph--;

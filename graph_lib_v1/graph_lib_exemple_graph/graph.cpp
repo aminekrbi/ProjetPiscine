@@ -139,13 +139,29 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     //m_top_box.set_dim(1000,740);
     m_top_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
 
-   /* m_top_box.add_child(m_tool_box);
-    m_tool_box.set_dim(80,720);
-    m_tool_box.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
-    m_tool_box.set_bg_color(BLANCBLEU);*/
+
+    m_top_box.add_child(precedent);
+    precedent.set_dim(50,50);
+    precedent.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
+    precedent.set_bg_color(BLEU);
+
+    m_top_box.add_child(suivant);
+    suivant.set_dim(50,50);
+    suivant.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
+    suivant.set_bg_color(BLEU);
+
+    m_top_box.add_child(stopsimu);
+    stopsimu.set_dim(100,100);
+    stopsimu.set_pos(400,500);
+    stopsimu.set_bg_color(VIOLET);
+
+    m_top_box.add_child(lancersimu);
+    lancersimu.set_dim(100,100);
+    lancersimu.set_pos(600,700);
+    lancersimu.set_bg_color(VIOLET);
 
     m_top_box.add_child(m_main_box);
-    m_main_box.set_dim(SCREEN_W,SCREEN_H);
+    m_main_box.set_dim(SCREEN_W+15,800);
     m_main_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
     m_main_box.set_bg_color(BLANCJAUNE);
 }
