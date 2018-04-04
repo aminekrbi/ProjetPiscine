@@ -200,11 +200,30 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     stopsimu.set_pos(300,650);
     stopsimu.set_bg_color(VIOLET);
 
+    m_main_box.add_child(stopsimutext);
+    stopsimutext.set_dim(100,100);
+    stopsimutext.set_pos(300,650);
+
     m_main_box.add_child(lancersimu);
     lancersimu.set_dim(100,100);
     lancersimu.set_pos(700,650);
     lancersimu.set_bg_color(VIOLET);
 
+    m_main_box.add_child(lancersimutext);
+    lancersimutext.set_dim(100,100);
+    lancersimutext.set_pos(700,650);
+
+    ///connexité
+
+    m_main_box.add_child(connexite);
+    connexite.set_dim(80,75);
+    connexite.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Center);
+    connexite.set_bg_color(VERT);
+
+    m_main_box.add_child(connexitetext);
+    connexitetext.set_dim(120,120);
+    connexitetext.set_message("connexite");
+    connexitetext.set_pos(0,380);
 }
 
 

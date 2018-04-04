@@ -272,6 +272,9 @@ class GraphInterface
         grman::WidgetBox sauvegarder;
         grman::WidgetText sauvegardertext;
 
+        grman::WidgetBox quitter;
+        grman::WidgetText quittertexte;
+
         grman::WidgetBox suivant;
         grman::WidgetBox precedent;
 
@@ -279,10 +282,7 @@ class GraphInterface
         grman::WidgetText precedenttext;
 
         grman::WidgetBox connexite;
-        grman::WidgetText connextietext;
-
-        grman::WidgetBox quitter;
-        grman::WidgetText quittertexte;
+        grman::WidgetText connexitetext;
 
         // A compléter éventuellement par des widgets de décoration ou
         // d'édition (boutons ajouter/enlever ...)
