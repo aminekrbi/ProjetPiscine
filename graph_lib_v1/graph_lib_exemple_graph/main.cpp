@@ -26,6 +26,27 @@ affichagegraph(Graph g, int choixgraph)
    }
    return 0;
 }
+
+///simulation(Graph g,)
+
+/*
+{
+
+if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<100 && mouse_y>15))
+            {
+
+            }
+}
+            */
+
+///sauvegarde(Graph g)
+
+/*
+{
+
+}
+*/
+
 int main()
 {
     ///variables
@@ -39,6 +60,9 @@ int main()
 
     /// Un exemple de graphe
     Graph g;
+    Graph i;
+    Graph j;
+
     g.make_example();
 
     g.update();
@@ -55,8 +79,8 @@ int main()
             ///suivant précédent
             if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<60 && mouse_y>0))
             {
-                choixgraph--;
-                choixgraph=affichagegraph(g,choixgraph);
+                    choixgraph--;
+                    choixgraph=affichagegraph(g,choixgraph);
             }
             if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<120 && mouse_y>60))
             {
@@ -74,18 +98,21 @@ int main()
             ///sauvegarder
             if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<725 && mouse_y>680))
             {
-
+                //sauvegarde();
             }
 
             ///simulation
             if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<100 && mouse_y>15))
             {
-                simulation()
+                //simulation();
             }
             if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<100 && mouse_y>15))
             {
 
             }
+
+            ///texte suivant prece ...
+
 
         /// Mise à jour générale (clavier/souris/buffer etc...)
         //grman::mettre_a_jour();

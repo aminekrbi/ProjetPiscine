@@ -151,7 +151,7 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_tool_box.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
     m_tool_box.set_bg_color(BLEUCLAIR);
 
-    ///suivant précedent
+    ///suivant précedent +txt
     m_main_box.add_child(suivant);
     suivant.set_dim(80,120);
     suivant.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
@@ -162,16 +162,37 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     precedent.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
     precedent.set_bg_color(BLEU);
 
-    ///supp sauvegarder
-    m_main_box.add_child(supp);
-    supp.set_dim(80,120);
-    supp.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Down);
-    supp.set_bg_color(ROUGE);
+    m_main_box.add_child(suivanttext);
+    suivanttext.set_dim(40,60);
+    suivanttext.set_message("suivant");
+    suivanttext.set_pos(10,20);
+
+    m_main_box.add_child(precedenttext);
+    precedenttext.set_dim(40,60);
+    precedenttext.set_message("précédent");
+    precedenttext.set_pos(10,100);
+
+
+    ///quitter sauvegarder
+    m_main_box.add_child(quitter);
+    quitter.set_dim(80,120);
+    quitter.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Down);
+    quitter.set_bg_color(ROUGE);
 
     m_main_box.add_child(sauvegarder);
     sauvegarder.set_dim(80,75);
     sauvegarder.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Down);
     sauvegarder.set_bg_color(VERT);
+
+    m_main_box.add_child(sauvegardertext);
+    sauvegardertext.set_dim(40,60);
+    sauvegardertext.set_message("sauvegarde");
+    sauvegardertext.set_pos(20,700);
+
+    m_main_box.add_child(quittertexte);
+    quittertexte.set_dim(40,60);
+    quittertexte.set_message("quitter");
+    quittertexte.set_pos(20,750);
 
     ///simulation stop debut
     m_main_box.add_child(stopsimu);
@@ -197,9 +218,10 @@ void Graph::make_example()
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
     // La ligne précédente est en gros équivalente à :
     // m_interface = new GraphInterface(50, 0, 750, 600);
+    //load(fichier);
 
     /// Les sommets doivent être définis avant les arcs
-    // Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
+    /*// Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
     add_interfaced_vertex(0, 30.0, 200, 100, "clown1.jpg");
     add_interfaced_vertex(1, 60.0, 400, 100, "clown2.jpg");
     add_interfaced_vertex(2,  50.0, 200, 300, "clown3.jpg");
@@ -221,6 +243,7 @@ void Graph::make_example()
     add_interfaced_edge(7, 2, 0, 100.0);
     add_interfaced_edge(8, 5, 2, 20.0);
     add_interfaced_edge(9, 3, 7, 80.0);
+    */
 }
 
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface

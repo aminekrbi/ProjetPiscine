@@ -262,12 +262,27 @@ class GraphInterface
 
         /// Dans cette boite seront ajoutés des boutons de contrôle etc...
         grman::WidgetBox m_tool_box;
+
+        grman::WidgetBox lancersimu;
+        grman::WidgetText lancersimutext;
+
+        grman::WidgetBox stopsimu;
+        grman::WidgetText stopsimutext;
+
+        grman::WidgetBox sauvegarder;
+        grman::WidgetText sauvegardertext;
+
         grman::WidgetBox suivant;
         grman::WidgetBox precedent;
-        grman::WidgetBox lancersimu;
-        grman::WidgetBox stopsimu;
-        grman::WidgetBox sauvegarder;
-        grman::WidgetBox supp;
+
+        grman::WidgetText suivanttext;
+        grman::WidgetText precedenttext;
+
+        grman::WidgetBox connexite;
+        grman::WidgetText connextietext;
+
+        grman::WidgetBox quitter;
+        grman::WidgetText quittertexte;
 
         // A compléter éventuellement par des widgets de décoration ou
         // d'édition (boutons ajouter/enlever ...)
