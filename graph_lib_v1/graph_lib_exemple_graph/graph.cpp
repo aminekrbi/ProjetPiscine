@@ -1,4 +1,9 @@
 #include "graph.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+
 
 /***************************************************
                     VERTEX
@@ -136,96 +141,148 @@ void Edge::post_update()
 /// éléments qui seront ensuite ajoutés lors de la mise ne place du Graphe
 GraphInterface::GraphInterface(int x, int y, int w, int h)
 {
-    //m_top_box.set_dim(1000,740);
+    m_top_box.set_dim(1000,740);
     m_top_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
 
     ///fonds
     m_top_box.add_child(m_main_box);
-    m_main_box.set_dim(SCREEN_W+15,800);
+    m_main_box.set_dim(875,700);
     m_main_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
     m_main_box.set_bg_color(BLANCJAUNE);
 
     /// boite latérale
-    m_main_box.add_child(m_tool_box);
-    m_tool_box.set_dim(80,700);
+    m_top_box.add_child(m_tool_box);
+    m_tool_box.set_dim(100,700);
     m_tool_box.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
-    m_tool_box.set_bg_color(BLEUCLAIR);
+    m_tool_box.set_bg_color(BLANC);
 
     ///suivant précedent +txt
-    m_main_box.add_child(suivant);
-    suivant.set_dim(80,120);
-    suivant.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
-    suivant.set_bg_color(VERT);
 
-    m_main_box.add_child(precedent);
-    precedent.set_dim(80,60);
-    precedent.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
+    m_tool_box.add_child(aprecedent);
+    aprecedent.set_dim(100,100);
+    aprecedent.set_pos(0,100);
+    aprecedent.set_bg_color(BLEUCLAIR);
+
+    m_tool_box.add_child(precedent);
+    precedent.set_dim(75,75);
+    precedent.set_pos(10,110);
     precedent.set_bg_color(BLEU);
 
-    m_main_box.add_child(suivanttext);
-    suivanttext.set_dim(40,60);
-    suivanttext.set_message("suivant");
-    suivanttext.set_pos(10,20);
+    m_tool_box.add_child(asuivant);
+    asuivant.set_dim(100,100);
+    asuivant.set_pos(0,0);
+    asuivant.set_bg_color(VERTCLAIR);
 
-    m_main_box.add_child(precedenttext);
-    precedenttext.set_dim(40,60);
+    m_tool_box.add_child(suivant);
+    suivant.set_dim(75,75);
+    suivant.set_pos(10,10);
+    suivant.set_bg_color(VERT);
+
+    suivant.add_child(suivanttext);
+    //suivanttext.set_dim(100,100);
+    suivanttext.set_message("next");
+    //suivanttext.set_pos(10,20);
+
+    precedent.add_child(precedenttext);
+    //precedenttext.set_dim(100,100);
     precedenttext.set_message("précédent");
-    precedenttext.set_pos(10,100);
+    //precedenttext.set_pos(10,100);
 
 
     ///quitter sauvegarder
-    m_main_box.add_child(quitter);
-    quitter.set_dim(80,120);
-    quitter.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Down);
+    m_tool_box.add_child(aquitter);
+    aquitter.set_dim(100,100);
+    aquitter.set_pos(0,500);
+    aquitter.set_bg_color(ROUGECLAIR);
+
+    m_tool_box.add_child(quitter);
+    quitter.set_dim(75,75);
+    quitter.set_pos(10,510);
     quitter.set_bg_color(ROUGE);
 
-    m_main_box.add_child(sauvegarder);
-    sauvegarder.set_dim(80,75);
-    sauvegarder.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Down);
+    m_tool_box.add_child(asauvegarder);
+    asauvegarder.set_dim(100,100);
+    asauvegarder.set_pos(0,600);
+    asauvegarder.set_bg_color(VERTCLAIR);
+
+    m_tool_box.add_child(sauvegarder);
+    sauvegarder.set_dim(75,75);
+    sauvegarder.set_pos(10,610);
     sauvegarder.set_bg_color(VERT);
 
-    m_main_box.add_child(sauvegardertext);
-    sauvegardertext.set_dim(40,60);
-    sauvegardertext.set_message("sauvegarde");
-    sauvegardertext.set_pos(20,700);
 
-    m_main_box.add_child(quittertexte);
-    quittertexte.set_dim(40,60);
-    quittertexte.set_message("quitter");
-    quittertexte.set_pos(20,750);
+    sauvegarder.add_child(sauvegardertext);
+    //sauvegardertext.set_dim(100,100);
+    sauvegardertext.set_message("save");
+    //sauvegardertext.set_pos(20,700);
 
-    ///simulation stop debut
-    m_main_box.add_child(stopsimu);
-    stopsimu.set_dim(100,100);
-    stopsimu.set_pos(300,650);
-    stopsimu.set_bg_color(VIOLET);
-
-    m_main_box.add_child(stopsimutext);
-    stopsimutext.set_dim(100,100);
-    stopsimutext.set_pos(300,650);
-
-    m_main_box.add_child(lancersimu);
-    lancersimu.set_dim(100,100);
-    lancersimu.set_pos(700,650);
-    lancersimu.set_bg_color(VIOLET);
-
-    m_main_box.add_child(lancersimutext);
-    lancersimutext.set_dim(100,100);
-    lancersimutext.set_pos(700,650);
+    quitter.add_child(quittertexte);
+    //quittertexte.set_dim(100,100);
+    quittertexte.set_message("quit");
+    //quittertexte.set_pos(0,0);
 
     ///connexité
 
-    m_main_box.add_child(connexite);
-    connexite.set_dim(80,75);
-    connexite.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Center);
+    m_tool_box.add_child(aconnexite);
+    aconnexite.set_dim(100,50);
+    aconnexite.set_pos(0,400);
+    aconnexite.set_bg_color(VERTCLAIR);
+
+    m_tool_box.add_child(connexite);
+    connexite.set_dim(75,30);
+    connexite.set_pos(10,410);
     connexite.set_bg_color(VERT);
 
-    m_main_box.add_child(connexitetext);
-    connexitetext.set_dim(120,120);
-    connexitetext.set_message("connexite");
-    connexitetext.set_pos(0,380);
+    ///k-connexité
+
+    m_tool_box.add_child(akconnexite);
+    akconnexite.set_dim(100,50);
+    akconnexite.set_pos(0,450);
+    akconnexite.set_bg_color(BLEUCLAIR);
+
+    m_tool_box.add_child(kconnexite);
+    kconnexite.set_dim(75,30);
+    kconnexite.set_pos(10,460);
+    kconnexite.set_bg_color(BLEU);
+
+
+
+    connexite.add_child(connexitetext);
+    //connexitetext.set_dim(100,100);
+    connexitetext.set_message("connexe");
+
+    kconnexite.add_child(kconnexitetext);
+    //connexitetext.set_dim(100,100);
+    kconnexitetext.set_message("k-connexe");
+    //connexitetext.set_pos(0,380);
 }
 
+/*void allouerMemoire(int ordre)
+{
+    m_ordre=ordre;
+    matrice=new int*[ordre]; //allocation de la premiere dimension
+    for(int i=0; i<ordre; i++)
+    {
+        matrice[i]=new int[ordre];//allocation de la deuxieme dimension
+    }
+    individus.resize(ordre); //on attribue une taille qui convient selon l'ordre
+    for(int j=0; j<ordre; j++)
+    {
+        individus[j]= new sommet(); //vecteur d'objets sommet
+    }
+}
+
+*
+void Graph::ajoutgraph(std::string fic)
+{
+    std::string nomsommet,nomimage;
+    float posx,posy;
+    int nm_sommet,population;
+    m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
+        //fic>>nomsommet,fic>>nm_sommet,fic>>population,fic>>posx,fic>>posy,fic>>nomimage;
+
+        add_interface_vertex(nomsommet, nm_sommet, population, posx,posy, nomimage);
+}*/
 
 /// Méthode spéciale qui construit un graphe arbitraire (démo)
 /// Cette méthode est à enlever et remplacer par un système
@@ -235,12 +292,11 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
 void Graph::make_example()
 {
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
-    // La ligne précédente est en gros équivalente à :
-    // m_interface = new GraphInterface(50, 0, 750, 600);
-    //load(fichier);
+
+    //loadfic(fic);
 
     /// Les sommets doivent être définis avant les arcs
-    /*// Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
+    // Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
     add_interfaced_vertex(0, 30.0, 200, 100, "clown1.jpg");
     add_interfaced_vertex(1, 60.0, 400, 100, "clown2.jpg");
     add_interfaced_vertex(2,  50.0, 200, 300, "clown3.jpg");
@@ -262,7 +318,7 @@ void Graph::make_example()
     add_interfaced_edge(7, 2, 0, 100.0);
     add_interfaced_edge(8, 5, 2, 20.0);
     add_interfaced_edge(9, 3, 7, 80.0);
-    */
+
 }
 
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface

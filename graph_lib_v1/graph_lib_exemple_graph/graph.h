@@ -263,15 +263,15 @@ class GraphInterface
         /// Dans cette boite seront ajoutés des boutons de contrôle etc...
         grman::WidgetBox m_tool_box;
 
-        grman::WidgetBox lancersimu;
+        grman::WidgetBox asuivant;
         grman::WidgetText lancersimutext;
 
-        grman::WidgetBox stopsimu;
+        grman::WidgetBox aprecedent;
         grman::WidgetText stopsimutext;
-
+grman::WidgetBox asauvegarder;
         grman::WidgetBox sauvegarder;
         grman::WidgetText sauvegardertext;
-
+grman::WidgetBox aquitter;
         grman::WidgetBox quitter;
         grman::WidgetText quittertexte;
 
@@ -280,10 +280,13 @@ class GraphInterface
 
         grman::WidgetText suivanttext;
         grman::WidgetText precedenttext;
-
+grman::WidgetBox aconnexite;
         grman::WidgetBox connexite;
         grman::WidgetText connexitetext;
 
+        grman::WidgetBox akconnexite;
+        grman::WidgetBox kconnexite;
+        grman::WidgetText kconnexitetext;
         // A compléter éventuellement par des widgets de décoration ou
         // d'édition (boutons ajouter/enlever ...)
 
@@ -307,6 +310,7 @@ class Graph
 
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
         std::shared_ptr<GraphInterface> m_interface = nullptr;
+        std::string fic;
 
 
     public:
@@ -315,6 +319,8 @@ class Graph
         /// Ici on ne donne qu'un seul constructeur qui peut utiliser une interface
         Graph (GraphInterface *interface=nullptr) :
             m_interface(interface)  {  }
+            void loadfic(std::string fic);
+            void ajoutgraph(std::string fic);
 
         void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 );
         void add_interfaced_edge(int idx, int vert1, int vert2, double weight=0);

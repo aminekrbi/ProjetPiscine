@@ -1,0 +1,6 @@
+3
+2
+Bateau 1 100 80 150 bateau.png
+Lion 2 150 200 170 0 lion.png
+chien 3 180 563 451 0 chien.png
+
