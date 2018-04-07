@@ -9,100 +9,171 @@ void affichagegraph(Graph g)
     g.update();
     grman::mettre_a_jour();
 
-    while(!key[KEY_ESC] )
+ /*   while(!key[KEY_ESC] )
 
         {
             g.update();
             grman::mettre_a_jour();
-        }
+        }*/
 }
 
-void menu(Graph g,Graph i,Graph j)
+/*oid ajoutsommet()
 {
-    int choixgraph=1;
+    std::string nomsaisie;
+    std::cin>>nomsaisie;
 
-    if (choixgraph<4 && choixgraph>0)
+    if (nomsaisie=="clown1")
     {
-        while (!key[KEY_ESC])
-        {
+        add_interfaced_vertex(0, 30.0, 200, 100, "clown1.jpg");
+    }
+    else
+    {
+            std::cout << "pas d'image de ce type ";
+    }
+}
+*/
+int menu(Graph g,int choixgraph)
+{
+    //affichagegraph(g);
+    //std ::cout<< "bienvenue";
 
-            if (mouse_b&1 && (mouse_x<100 && mouse_x>15) && (mouse_y<100 && mouse_y>15))
+    g.update();
+    //grman::mettre_a_jour();
+
+    while (!key[KEY_ESC])
+        {
+            g.update();
+            grman::mettre_a_jour();
+
+            if (choixgraph<4 && choixgraph>0)
+            {
+
+            ///suivant precedent
+            if (mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<200 && mouse_y>100))
                 {
+                    std ::cout<< "bienvenue";
+                    //g.ajoutarc1();
+                   // std ::cout<< "bienvenue";
                     if (choixgraph==1)
                     {
-                        affichagegraph(g);
+                       // affichagegraph(g);
                         choixgraph=1;
+                        return choixgraph;
                     }
                     if(choixgraph==2)
                     {
                         choixgraph--;
-                        affichagegraph(g);
+                        //affichagegraph(g);
+                        return choixgraph;
                     }
                     if(choixgraph==3)
                     {
                         choixgraph--;
-                        affichagegraph(i);
+                        return choixgraph;
+                        //affichagegraph(i);
                     }
                 }
-            if (mouse_b&1 && (mouse_x<1000 && mouse_x>915) && (mouse_y<100 && mouse_y>15))
+            if (mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<100 && mouse_y>0))
                 {
+                    std ::cout<<"bienvenue";
+                    //g.ajoutarc1();
                     if (choixgraph==1)
                     {
-                        affichagegraph(i);
+                        //affichagegraph(i);
                         choixgraph++;
+                        return choixgraph;
 
                     }
                     if(choixgraph==2)
                     {
                         choixgraph++;
-                        affichagegraph(j);
+                        return choixgraph;
+                        //affichagegraph(j);
 
                     }
                     if(choixgraph==3)
                     {
                         choixgraph=3;
-                        affichagegraph(j);
+                        return choixgraph;
+                        //affichagegraph(j);
 
                     }
                 }
+            }
         }
+}
+            /*
+            if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<550 && mouse_y>500))
+    {
+
+
+    }
+
+    if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<500 && mouse_y>450))
+    {
+
+    }
+
+    ///quitter et sauvegarder
+    if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<625 && mouse_y>550))
+    {
+            std::cout<<"bien";
+    }
+
+    if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<700 && mouse_y>625))
+    {
+               //sauvegarder
+    }
+
+            ///ajout et supp sommet
+    if(mouse_b&1 && (mouse_x<50 && mouse_x>0) && (mouse_y<300 && mouse_y>350))
+    {
+        g.ajoutarc1();
+    }
+    if(mouse_b&1 && (mouse_x<100 && mouse_x>50) && (mouse_y<300 && mouse_y>350))
+    {
+
+    }
    }
 
-   if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<725 && mouse_y>680))
+   ///connexite et k-connexite
+
+   if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<550 && mouse_y>500))
     {
-                //sauvegarde();
+
+
     }
 
-            ///simulation
-    if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<100 && mouse_y>15))
-    {
-                //simulation();
-    }
-    if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<100 && mouse_y>15))
+    if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<500 && mouse_y>450))
     {
 
     }
 
-            ///conexite
-    if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<100 && mouse_y>15))
-    {
-                //connexite(g,choixgraph)
-    }
-
-            ///ajout sommet
-    if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<100 && mouse_y>15))
+    ///quitter et sauvegarder
+    if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<625 && mouse_y>550))
     {
 
     }
-    if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<800 && mouse_y>725))
+
+    if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<700 && mouse_y>625))
+    {
+               //sauvegarder
+    }
+
+            ///ajout et supp sommet
+    if(mouse_b&1 && (mouse_x<50 && mouse_x>0) && (mouse_y<300 && mouse_y>350))
+    {
+        g.ajoutarc1();
+    }
+    if(mouse_b&1 && (mouse_x<100 && mouse_x>50) && (mouse_y<300 && mouse_y>350))
     {
 
     }
 }
 
+
 ///simulation(Graph g,)
 
-/*
 {
 
 if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<100 && mouse_y>15))
@@ -110,7 +181,7 @@ if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<100 && mouse_y>15))
 
             }
 }
-            */
+
 
 ///sauvegarde(Graph g)
 
@@ -130,7 +201,7 @@ if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<100 && mouse_y>15))
 int main()
 {
     ///variables
-
+    int choixgraph=1;
     /// A appeler en 1er avant d'instancier des objets graphiques etc...
     grman::init();
 
@@ -146,30 +217,24 @@ int main()
     g.make_example();   /// Un exemple de graphe
    // i.make_example();
     //j.make_example();
-    //g.loadfic("sauvegarderg1.txt");
-    /// Vous gardez la main sur la "boucle de jeu"
-    /// ( contrairement à des frameworks plus avancés )
-    //while ( !key[KEY_ESC] )
-
-        /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
-        //choixgraph=menu(g,choixgraph);
-
-        //grman::mettre_a_jour();
 
         while(!key[KEY_ESC] )
 
         {
-            //choixgraph=menu(g,choixgraph);
-            affichagegraph(g);
-            menu(g,i,j);
+            if (choixgraph==1)
+            {
+                choixgraph=menu(g,choixgraph);
+            }
+            if (choixgraph==2)
+            {
+                choixgraph=menu(i,choixgraph);
+            }
+            if (choixgraph==3)
+            {
+                choixgraph=menu(j,choixgraph);
+            }
 
         }
-            ///texte suivant prece ...
-
-
-        /// Mise à jour générale (clavier/souris/buffer etc...)
-        //grman::mettre_a_jour();
-
 
     grman::fermer_allegro();
 

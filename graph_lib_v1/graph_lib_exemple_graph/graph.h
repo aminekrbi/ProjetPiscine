@@ -263,30 +263,72 @@ class GraphInterface
         /// Dans cette boite seront ajoutés des boutons de contrôle etc...
         grman::WidgetBox m_tool_box;
 
+        ///grande boite
+
         grman::WidgetBox asuivant;
-        grman::WidgetText lancersimutext;
-
         grman::WidgetBox aprecedent;
-        grman::WidgetText stopsimutext;
-grman::WidgetBox asauvegarder;
-        grman::WidgetBox sauvegarder;
-        grman::WidgetText sauvegardertext;
-grman::WidgetBox aquitter;
-        grman::WidgetBox quitter;
-        grman::WidgetText quittertexte;
+        grman::WidgetBox asauvegarder;
+        grman::WidgetBox aquitter;
+        grman::WidgetBox aconnexite;
+        grman::WidgetBox akconnexite;
 
+        ///sous boites
+
+        grman::WidgetBox sauvegarder;
+        grman::WidgetBox quitter;
         grman::WidgetBox suivant;
         grman::WidgetBox precedent;
+        grman::WidgetBox connexite;
+        grman::WidgetBox kconnexite;
+        grman::WidgetBox supprimer;
+        grman::WidgetBox ajout;
 
+        ///texte boite
+
+        grman::WidgetText lancersimutext;
+        grman::WidgetText stopsimutext;
+        grman::WidgetText sauvegardertext;
         grman::WidgetText suivanttext;
         grman::WidgetText precedenttext;
-grman::WidgetBox aconnexite;
-        grman::WidgetBox connexite;
+        grman::WidgetText quittertexte;
         grman::WidgetText connexitetext;
+        grman::WidgetText kconnexitetext;
+        grman::WidgetText supprimertext;
+        grman::WidgetText ajouttext;
+
+        ///button
+
+        grman::WidgetButton supprimerh;
+        grman::WidgetButton ajouth;
+        grman::WidgetButton sauvegarderh;
+        grman::WidgetButton quitterh;
+        grman::WidgetButton suivanth;
+        grman::WidgetButton precedenth;
+        grman::WidgetButton connexiteh;
+        grman::WidgetButton kconnexiteh;
+
+        /*
+        grman::WidgetBox sommet1;
+        grman::WidgetText sommet1text;
+
+        grman::WidgetBox sommet2;
+        grman::WidgetText sommet2text;
+
+        grman::WidgetBox sommet3;
+        grman::WidgetText sommet3text;
+
+        grman::WidgetBox sommet4;
+        grman::WidgetText sommet4text;
+
+        grman::WidgetBox sommet5;
+        grman::WidgetText sommet5text;
+
+        grman::WidgetBox sommet6;
+        grman::WidgetText sommet6text;
 
         grman::WidgetBox akconnexite;
         grman::WidgetBox kconnexite;
-        grman::WidgetText kconnexitetext;
+        grman::WidgetText kconnexitetext;*/
         // A compléter éventuellement par des widgets de décoration ou
         // d'édition (boutons ajouter/enlever ...)
 
@@ -321,7 +363,9 @@ class Graph
             m_interface(interface)  {  }
             void loadfic(std::string fic);
             void ajoutgraph(std::string fic);
-
+            void ajout();
+            void ajoutarc1();
+            void ajoutsommet1();
         void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 );
         void add_interfaced_edge(int idx, int vert1, int vert2, double weight=0);
 
@@ -330,8 +374,10 @@ class Graph
         /// Cette méthode est à enlever et remplacer par un système
         /// de chargement de fichiers par exemple.
         void make_example();
-
-
+        void supp();
+        void remove_edge(int eidx);
+        void suppsommet(int choisommet);
+        void supptoutarc(int i);
         /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
         void update();
 };
