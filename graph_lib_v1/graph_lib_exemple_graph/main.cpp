@@ -28,7 +28,7 @@ affichagegraph(Graph g, int choixgraph)
 }
 int main()
 {
-    ///variables
+    std::string mon_fichier="chargement1.txt";
 
     int choixgraph=2;
     /// A appeler en 1er avant d'instancier des objets graphiques etc...
@@ -87,6 +87,15 @@ int main()
             {
 
             }
+
+            if(key[KEY_S])
+            {
+                g.saveFichier(mon_fichier);
+            }
+
+
+
+
 
         /// Mise à jour générale (clavier/souris/buffer etc...)
         //grman::mettre_a_jour();

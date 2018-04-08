@@ -1,8 +1,29 @@
 #include "graph.h"
+#include <fstream>
+#include <string>
 
 /***************************************************
                     VERTEX
 ****************************************************/
+int Graph::getOrdre()
+{
+return m_ordre;
+}
+
+void Graph::setOrdre(int ordre)
+{
+    m_ordre =ordre;
+}
+
+int Graph::getNbarc()
+{
+return m_nb_arc;
+}
+
+void Graph::setNbarc(int nb_arc)
+{
+    m_nb_arc=nb_arc;
+}
 
 /// Le constructeur met en place les éléments de l'interface
 VertexInterface::VertexInterface(int idx, int x, int y, std::string pic_name, int pic_idx)
@@ -54,7 +75,6 @@ void Vertex::pre_update()
     /// Copier la valeur locale de la donnée m_value vers le label sous le slider
     m_interface->m_label_value.set_message( std::to_string( (int)m_value) );
 }
-
 
 /// Gestion du Vertex après l'appel à l'interface
 void Vertex::post_update()
@@ -157,7 +177,6 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     suivant.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
     suivant.set_bg_color(VERT);
 
-
     m_main_box.add_child(precedent);
     precedent.set_dim(80,60);
     precedent.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
@@ -186,6 +205,80 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     lancersimu.set_bg_color(VIOLET);
 
 }
+///Méthode pour ajouter les sommets et ards des graphes à partir d'un chargement
+std::string Graph::loadFichier(std::string mon_fichier)
+{
+///Tentative d'ouverture du fichier
+
+    std::ifstream fichier(mon_fichier.c_str(),std::ios::in);
+    if( !fichier.is_open())
+        throw "Probleme ouverture du fichier !";
+
+    std::string nomImage;
+    float  population, poids;
+    int ordre, nb_arc, posx, posy, S1, S2;
+    m_interface = std::make_shared<GraphInterface>(50,0,750,600);
+
+    if(fichier)
+    {
+        fichier>>ordre;
+        setOrdre(ordre);
+
+        for(int i=0; i<getOrdre();i++)
+        {
+            fichier>>population >>posx  >>posy >>nomImage;
+    // Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
+            add_interfaced_vertex(i, population, posx, posy, nomImage);
+        }
+
+        fichier>>nb_arc;
+        setNbarc(nb_arc);
+
+        for(int i=0; i<getNbarc();i++)
+        {
+            fichier>>S1>>S2>>poids;
+// AJouter l'arc d'indice 0, allant du sommet 1 au sommet 2 de poids 50 etc..
+            add_interfaced_edge(i, S1, S2, poids);
+        }
+    }else
+            {std::cout << "Erreur a l'ouverture !" << std::endl;}
+
+
+     return mon_fichier;
+
+}
+
+
+void Graph::saveFichier(std::string mon_fichier)
+{
+    std::ofstream fichier("text.txt",std::ios::out | std::ios::trunc);
+    std::string nomImage;
+
+    if(fichier)
+    {
+        fichier<<getOrdre()<<std::endl;
+        for(int i=0; i<getOrdre();i++)
+        {
+         std::cin >> nomImage;
+
+            fichier<< m_vertices[i].m_interface->m_slider_value.get_value() << " " <<
+                    m_vertices[i].m_interface->m_top_box.get_posx() << " " <<
+                    m_vertices[i].m_interface->m_top_box.get_posy() << " " <<
+                    nomImage << ".bmp" << std::endl;
+        }
+
+        fichier<<getNbarc()<<std::endl;
+
+        for(int i=0; i<getNbarc();i++)
+        {
+            fichier<< m_edges[i].m_from << " "<< m_edges[i].m_to  << " "<< m_edges[i].m_weight << std::endl;
+
+        }
+
+    }
+}
+
+
 
 
 /// Méthode spéciale qui construit un graphe arbitraire (démo)
@@ -199,29 +292,17 @@ void Graph::make_example()
     // La ligne précédente est en gros équivalente à :
     // m_interface = new GraphInterface(50, 0, 750, 600);
 
-    /// Les sommets doivent être définis avant les arcs
-    // Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
-    add_interfaced_vertex(0, 30.0, 400, 100, "bateau.bmp");
-    add_interfaced_vertex(1, 60.0, 600, 100, "loutredemer.bmp");
-    add_interfaced_vertex(2,  50.0, 400, 300, "orque.bmp");
-    add_interfaced_vertex(3,  0.0, 600, 300, "phoques.bmp");
-    add_interfaced_vertex(4,  100.0, 800, 300, "poissoncarnivore.bmp");
-    add_interfaced_vertex(5,  0.0, 300, 500, "bad_clowns_xx3xx.jpg", 0);
-    add_interfaced_vertex(6,  0.0, 500, 500, "bad_clowns_xx3xx.jpg", 1);
-    add_interfaced_vertex(7,  0.0, 700, 500, "bad_clowns_xx3xx.jpg", 2);
+    /// Fait appel à la fonction loadFichier pour charger les sommets et les arcs
+        /// Les arcs doivent être définis entre des sommets qui existent !
 
-    /// Les arcs doivent être définis entre des sommets qui existent !
-    // AJouter l'arc d'indice 0, allant du sommet 1 au sommet 2 de poids 50 etc...
-    add_interfaced_edge(0, 1, 2, 50.0);
-    add_interfaced_edge(1, 0, 1, 50.0);
-    add_interfaced_edge(2, 1, 3, 75.0);
-    add_interfaced_edge(3, 4, 1, 25.0);
-    add_interfaced_edge(4, 6, 3, 25.0);
-    add_interfaced_edge(5, 7, 3, 25.0);
-    add_interfaced_edge(6, 3, 4, 0.0);
-    add_interfaced_edge(7, 2, 0, 100.0);
-    add_interfaced_edge(8, 5, 2, 20.0);
-    add_interfaced_edge(9, 3, 7, 80.0);
+
+
+    loadFichier("chargement1.txt");
+
+
+
+
+
 }
 
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
@@ -232,6 +313,7 @@ void Graph::update()
 
     for (auto &elt : m_vertices)
         elt.second.pre_update();
+
 
     for (auto &elt : m_edges)
         elt.second.pre_update();
@@ -279,6 +361,11 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
 
     EdgeInterface *ei = new EdgeInterface(m_vertices[id_vert1], m_vertices[id_vert2]);
     m_interface->m_main_box.add_child(ei->m_top_edge);
-    m_edges[idx] = Edge(weight, ei);
+    m_edges[idx]= Edge(weight, ei);
+    m_edges[idx].m_from = id_vert1;
+    m_edges[idx].m_to = id_vert2;
+
+    m_vertices[id_vert1].m_out.push_back(idx);
+    m_vertices[id_vert2].m_in.push_back(idx);
 }
 

@@ -54,29 +54,31 @@
 	<iostream>
 	"graph.h"
 
-1522862484 source:c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\graph.cpp
+1523110870 source:c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\graph.cpp
 	"graph.h"
+	<fstream>
+	<string>
 
-1522862113 c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\graph.h
+1523103668 c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\graph.h
 	<vector>
 	<map>
 	<string>
 	<memory>
 	"grman/grman.h"
 
-1522862113 c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\grman\grman.h
+1522952966 c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\grman\grman.h
 	<allegro.h>
 	<string>
 	"grman_couleurs.h"
 	"coords.h"
 	"widget.h"
 
-1522862113 c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\grman\grman_couleurs.h
+1522952966 c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\grman\grman_couleurs.h
 
-1522862113 c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\grman\coords.h
+1522952966 c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\grman\coords.h
 	<cmath>
 
-1522862113 c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\grman\widget.h
+1522952966 c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\grman\widget.h
 	"grman.h"
 	<iostream>
 	<string>
@@ -84,10 +86,10 @@
 	<algorithm>
 	<allegro.h>
 
-1522862113 source:c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\grman\coords.cpp
+1522952966 source:c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\grman\coords.cpp
 	"coords.h"
 
-1522862113 source:c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\grman\grman.cpp
+1522952966 source:c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\grman\grman.cpp
 	<cmath>
 	<unordered_map>
 	<unordered_set>
@@ -101,10 +103,10 @@
 	<loadpng.h>
 	<jpgalleg.h>
 
-1522862113 source:c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\grman\widget.cpp
+1522952966 source:c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\grman\widget.cpp
 	"widget.h"
 
-1522862637 source:c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\main.cpp
+1523028700 source:c:\users\amine k\documents\github\projetpiscine\graph_lib_v1\graph_lib_exemple_graph\main.cpp
 	"grman/grman.h"
 	<iostream>
 	"graph.h"

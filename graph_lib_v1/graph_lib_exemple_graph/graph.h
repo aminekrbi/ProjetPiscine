@@ -76,6 +76,7 @@
 #include <string>
 #include <memory>
 
+
 #include "grman/grman.h"
 
 /***************************************************
@@ -147,6 +148,8 @@ class Vertex
         // Docu shared_ptr : https://msdn.microsoft.com/fr-fr/library/hh279669.aspx
         // La ligne précédente est en gros équivalent à la ligne suivante :
         // VertexInterface * m_interface = nullptr;
+
+
 
 
     public:
@@ -294,6 +297,11 @@ class Graph
         std::shared_ptr<GraphInterface> m_interface = nullptr;
 
 
+        int m_ordre;
+        int m_nb_arc;
+
+
+
     public:
 
         /// Les constructeurs sont à compléter selon vos besoin...
@@ -301,8 +309,18 @@ class Graph
         Graph (GraphInterface *interface=nullptr) :
             m_interface(interface)  {  }
 
+        int getOrdre();
+        void setOrdre(int);
+
+        int getNbarc();
+        void setNbarc(int);
+
+
         void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 );
         void add_interfaced_edge(int idx, int vert1, int vert2, double weight=0);
+        std::string loadFichier(std::string mon_fichier);
+        void saveFichier(std::string mon_fichier);
+
 
         /// Méthode spéciale qui construit un graphe arbitraire (démo)
         /// Voir implémentation dans le .cpp
