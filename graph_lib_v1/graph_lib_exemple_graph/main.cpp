@@ -17,21 +17,6 @@ void affichagegraph(Graph g)
         }*/
 }
 
-/*oid ajoutsommet()
-{
-    std::string nomsaisie;
-    std::cin>>nomsaisie;
-
-    if (nomsaisie=="clown1")
-    {
-        add_interfaced_vertex(0, 30.0, 200, 100, "clown1.jpg");
-    }
-    else
-    {
-            std::cout << "pas d'image de ce type ";
-    }
-}
-*/
 int menu(Graph g,int choixgraph)
 {
     //affichagegraph(g);
@@ -96,100 +81,18 @@ int menu(Graph g,int choixgraph)
                         choixgraph=3;
                         return choixgraph;
                         //affichagegraph(j);
-
+//int *choixg(0);
+//choig = &choixgraph;
                     }
-                }
-            }
+                    /*if(m_interface->kconnexiteh.clicked())
+        {
+            //kconnexite();
         }
-}
-            /*
-            if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<550 && mouse_y>500))
-    {
+                }
+            }*/
+        }
+}}}
 
-
-    }
-
-    if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<500 && mouse_y>450))
-    {
-
-    }
-
-    ///quitter et sauvegarder
-    if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<625 && mouse_y>550))
-    {
-            std::cout<<"bien";
-    }
-
-    if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<700 && mouse_y>625))
-    {
-               //sauvegarder
-    }
-
-            ///ajout et supp sommet
-    if(mouse_b&1 && (mouse_x<50 && mouse_x>0) && (mouse_y<300 && mouse_y>350))
-    {
-        g.ajoutarc1();
-    }
-    if(mouse_b&1 && (mouse_x<100 && mouse_x>50) && (mouse_y<300 && mouse_y>350))
-    {
-
-    }
-   }
-
-   ///connexite et k-connexite
-
-   if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<550 && mouse_y>500))
-    {
-
-
-    }
-
-    if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<500 && mouse_y>450))
-    {
-
-    }
-
-    ///quitter et sauvegarder
-    if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<625 && mouse_y>550))
-    {
-
-    }
-
-    if(mouse_b&1 && (mouse_x<100 && mouse_x>0) && (mouse_y<700 && mouse_y>625))
-    {
-               //sauvegarder
-    }
-
-            ///ajout et supp sommet
-    if(mouse_b&1 && (mouse_x<50 && mouse_x>0) && (mouse_y<300 && mouse_y>350))
-    {
-        g.ajoutarc1();
-    }
-    if(mouse_b&1 && (mouse_x<100 && mouse_x>50) && (mouse_y<300 && mouse_y>350))
-    {
-
-    }
-}
-
-
-///simulation(Graph g,)
-
-{
-
-if(mouse_b&1 && (mouse_x<80 && mouse_x>0) && (mouse_y<100 && mouse_y>15))
-            {
-
-            }
-}
-
-
-///sauvegarde(Graph g)
-
-/*
-{
-
-}
-*/
 
 ///connexite(Graph g,int choixgraph)
 /*

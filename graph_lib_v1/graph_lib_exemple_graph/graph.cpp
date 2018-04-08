@@ -241,10 +241,10 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     aconnexite.set_pos(0,500);
     aconnexite.set_bg_color(VERTCLAIR);
 
-    m_tool_box.add_child(connexiteh);
-    connexiteh.set_dim(75,30);
-    connexiteh.set_pos(10,513);
-    connexiteh.set_bg_color(VERT);
+    m_tool_box.add_child(connexiteb);
+    connexiteb.set_dim(15,15);
+    connexiteb.set_pos(5,515);
+    connexiteb.set_bg_color(VERT);
 
     ///k-connexité
 
@@ -253,21 +253,16 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     akconnexite.set_pos(0,450);
     akconnexite.set_bg_color(BLEUCLAIR);
 
-    m_tool_box.add_child(kconnexiteh);
-    kconnexiteh.set_dim(75,30);
-    kconnexiteh.set_pos(10,462);
-    kconnexiteh.set_bg_color(BLEU);
+    m_tool_box.add_child(kconnexiteb);
+    kconnexiteb.set_dim(15,15);
+    kconnexiteb.set_pos(5,465);
+    kconnexiteb.set_bg_color(BLEU);
 
+    aconnexite.add_child(connexitetext);
+    connexitetext.set_message("    F-connexe");
 
-
-    connexiteh.add_child(connexitetext);
-    //connexitetext.set_dim(100,100);
-    connexitetext.set_message("f-connexe");
-
-    kconnexiteh.add_child(kconnexitetext);
-    //connexitetext.set_dim(100,100);
-    kconnexitetext.set_message("k-connexe");
-    //connexitetext.set_pos(0,380);
+    akconnexite.add_child(kconnexitetext);
+    kconnexitetext.set_message("    K-connexe");
 
 
     ///ajouter supprimer
@@ -287,6 +282,21 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
 
    ajouth.add_child(ajouttext);
    ajouttext.set_message("add");
+
+   ///play simu
+  m_tool_box.add_child(aplay);
+    aplay.set_dim(100,50);
+    aplay.set_pos(0,400);
+    aplay.set_bg_color(BLEUCLAIR);
+
+    m_tool_box.add_child(playb);
+    playb.set_dim(15,15);
+    playb.set_pos(5,415);
+    playb.set_bg_color(BLEU);
+
+    aplay.add_child(playtext);
+    playtext.set_message("     Simu");
+
 
 }
 
@@ -422,23 +432,8 @@ void Graph::remove_edge(int eidx)
     std::cout << m_edges.size() << std::endl;
 
 }
-/*void Graph::supptoutarc(int i)
-{
-    for(auto &it :m_edges)
-    {
-        if(it.second.get_from()==i || it.second.get_to()==i)
-        {
-            remove_edge(it.first);
-        }
-    }
-}*/
 void Graph::suppsommet(int choisommet)
 {
-    //m_vertices[choisommet].m_interface->m_top_box.get_posx()+300;
-    //m_vertices[choisommet].m_interface->m_top_box.get_posy()+300;
-    //m_vertices[choisommet].m_interface->set_frame_pos(1000,1000);
-    //supptoutarc(choisommet);
-
     Vertex &remed=m_vertices.at(choisommet);
 
     if(m_interface && remed.m_interface)
@@ -446,61 +441,11 @@ void Graph::suppsommet(int choisommet)
         m_interface->m_main_box.remove_child(remed.m_interface->m_top_box);
     }
 
-    for( int i=0;i<remed.m_in.size();i++)
-    {
-        remove_edge(remed.m_in[i]);
-    }
+for(int i=0; i<11; i++)
+    if(m_edges[i].m_from == choisommet || m_edges[i].m_to == choisommet)
 
-    for(int i=0; i<remed.m_out.size();i++)
-    {
-        remove_edge(remed.m_out[i]);
-    }
-
+    remove_edge(i);
 }
-/*void Graph::remove_vertex(int eidx)
-{
-    /// référence vers le Edge à enlever
-    Vertex &remed=m_vertices.at(eidx);
-
-    std::cout << "Removing vertex " << eidx << " " << remed.m_from << "->" << remed.m_to << " " << remed.m_weight << std::endl;
-
-    /// Tester la cohérence : nombre d'arc entrants et sortants des sommets 1 et 2
-    std::cout << m_vertices[remed.m_from].m_in.size() << " " << m_vertices[remed.m_from].m_out.size() << std::endl;
-    std::cout << m_vertices[remed.m_to].m_in.size() << " " << m_vertices[remed.m_to].m_out.size() << std::endl;
-    std::cout << m_edges.size() << std::endl;
-
-    /// test : on a bien des éléments interfacés
-    if (m_interface && remed.m_interface)
-    {
-        /// Ne pas oublier qu'on a fait ça à l'ajout de l'arc :
-        /* EdgeInterface *ei = new EdgeInterface(m_vertices[id_vert1], m_vertices[id_vert2]); */
-        /* m_interface->m_main_box.add_child(ei->m_top_edge);  */
-        /* m_edges[idx] = Edge(weight, ei); */
-        /// Le new EdgeInterface ne nécessite pas de delete car on a un shared_ptr
-        /// Le Edge ne nécessite pas non plus de delete car on n'a pas fait de new (sémantique par valeur)
-        /// mais il faut bien enlever le conteneur d'interface m_top_edge de l'arc de la main_box du graphe
-  /*      m_interface->m_main_box.remove_child( remed.m_interface->m_top_edge );
-    }
-
-    /// Il reste encore à virer l'arc supprimé de la liste des entrants et sortants des 2 sommets to et from !
-    /// References sur les listes de edges des sommets from et to
-    std::vector<int> &vefrom = m_vertices[remed.m_from].m_out;
-    std::vector<int> &veto = m_vertices[remed.m_to].m_in;
-    vefrom.erase( std::remove( vefrom.begin(), vefrom.end(), eidx ), vefrom.end() );
-    veto.erase( std::remove( veto.begin(), veto.end(), eidx ), veto.end() );
-
-    /// Le Edge ne nécessite pas non plus de delete car on n'a pas fait de new (sémantique par valeur)
-    /// Il suffit donc de supprimer l'entrée de la map pour supprimer à la fois l'Edge et le EdgeInterface
-    /// mais malheureusement ceci n'enlevait pas automatiquement l'interface top_edge en tant que child de main_box !
-    m_edges.erase( eidx );
-
-
-    /// Tester la cohérence : nombre d'arc entrants et sortants des sommets 1 et 2
-    std::cout << m_vertices[remed.m_from].m_in.size() << " " << m_vertices[remed.m_from].m_out.size() << std::endl;
-    std::cout << m_vertices[remed.m_to].m_in.size() << " " << m_vertices[remed.m_to].m_out.size() << std::endl;
-    std::cout << m_edges.size() << std::endl;
-
-}*/
 
 void Graph:: supp()
 {
@@ -509,27 +454,42 @@ void Graph:: supp()
     int choiarrete;
     do
     {
-        std::cout<<"1: pour supprimer un sommet, 2: pour supprimer une arrete";
+        std::cout<<"1: pour supprimer un sommet, 2: pour supprimer une arrete"<<std::endl;
         std::cin>>choix;
 
         if(choix==1)
         {
-            std ::cout << "choisir le numero de du sommet";
+            std ::cout << "choisir le numero de du sommet"<<std::endl;
             std::cin>>choisommet;
             suppsommet(choisommet);
         }
         if(choix==2)
         {
-            std::cout<<"choisir le numero de l'arc";
+            std::cout<<"choisir le numero de l'arc"<<std::endl;
             std::cin>>choiarrete;
             remove_edge(choiarrete);
-            //ajoutsommet1();
+
         }
 
 
     }while( choix!=1 && choix!=2);
 }
 
+void Graph::kconnexite()
+{
+    int nmsommet=0;
+    int tab[10];
+    std::cout <<"mzdic";
+
+/*        nmsommet=parcourarretemin(nmsommet);
+        tab[10]=matriceadjacent();
+
+        for(int i=0;i<10;i++)
+        {
+            suppsommet(tab(i));
+            //desactivesommetarc(tab[i]);
+        }*/
+}
 /// Méthode spéciale qui construit un graphe arbitraire (démo)
 /// Cette méthode est à enlever et remplacer par un système
 /// de chargement de fichiers par exemple.
@@ -587,15 +547,15 @@ void Graph::update()
     for (auto &elt : m_edges)
         elt.second.post_update();
 
-        ///connexe
-        if(m_interface->kconnexiteh.clicked())
+       /* ///connexe
+        if(m_interface->kconnexiteb.Checked())
         {
-            //kconnexite();
+            kconnexite();
         }
-        if(m_interface->connexiteh.clicked())
+        if(m_interface->connexiteb.clicked())
         {
-            //conexite();
-        }
+            //fconexite();
+        }*/
 
         ///save quit
         if(m_interface->sauvegarderh.clicked())
@@ -604,7 +564,7 @@ void Graph::update()
         }
         if(m_interface->quitterh.clicked())
         {
-           std::cout<<"yes"; //ajoutarc1();
+            exit(0);
         }
 
         ///ajout & supp
@@ -654,5 +614,11 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
     EdgeInterface *ei = new EdgeInterface(m_vertices[id_vert1], m_vertices[id_vert2]);
     m_interface->m_main_box.add_child(ei->m_top_edge);
     m_edges[idx] = Edge(weight, ei);
-}
 
+        m_edges[idx].m_from = id_vert1;
+    m_edges[idx].m_to = id_vert2;
+
+    m_vertices[id_vert1].m_out.push_back(idx);
+    m_vertices[id_vert2].m_in.push_back(idx);
+
+}

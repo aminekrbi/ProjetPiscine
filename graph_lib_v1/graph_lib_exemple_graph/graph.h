@@ -282,6 +282,7 @@ class GraphInterface
         grman::WidgetBox kconnexite;
         grman::WidgetBox supprimer;
         grman::WidgetBox ajout;
+        grman::WidgetBox aplay;
 
         ///texte boite
 
@@ -295,17 +296,23 @@ class GraphInterface
         grman::WidgetText kconnexitetext;
         grman::WidgetText supprimertext;
         grman::WidgetText ajouttext;
+        grman::WidgetText playtext;
 
         ///button
 
         grman::WidgetButton supprimerh;
         grman::WidgetButton ajouth;
+        grman::WidgetButton playh;
         grman::WidgetButton sauvegarderh;
         grman::WidgetButton quitterh;
         grman::WidgetButton suivanth;
         grman::WidgetButton precedenth;
         grman::WidgetButton connexiteh;
         grman::WidgetButton kconnexiteh;
+
+        grman::WidgetCheckBox connexiteb;
+        grman::WidgetCheckBox kconnexiteb;
+        grman::WidgetCheckBox playb;
 
         /*
         grman::WidgetBox sommet1;
@@ -366,6 +373,7 @@ class Graph
             void ajout();
             void ajoutarc1();
             void ajoutsommet1();
+            void kconnexite();
         void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 );
         void add_interfaced_edge(int idx, int vert1, int vert2, double weight=0);
 
